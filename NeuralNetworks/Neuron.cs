@@ -37,6 +37,15 @@ public class Neuron
         return Output;
     }
 
+    public void SetWeights(List<double> weights)
+    {
+        //TODO видалити після реалізації навчання
+        for (int i = 0; i < weights.Count; i++)
+        {
+            this.Weights[i] = weights[i];
+        }
+    }
+
     public override string ToString()
     {
         return Output.ToString();
