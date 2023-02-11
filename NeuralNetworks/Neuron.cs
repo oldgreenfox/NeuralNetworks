@@ -2,7 +2,7 @@ namespace NeuralNetworks;
 
 public class Neuron
 {
-    private Guid id;
+    public Guid id { get; private set; }
     public List<double> Weights { get; }
     public NeuronType neuronType { get; }
     public double Output { get; private set; }
