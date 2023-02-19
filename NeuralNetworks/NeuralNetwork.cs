@@ -51,9 +51,9 @@ public class NeuralNetwork
         {
             var neuron = new Neuron(1, ActivationFunctions.LogisticFunction, NeuronType.INPUT);
             inputNeurons.Add(neuron);
-            var layer = new Layer(inputNeurons, NeuronType.INPUT);
-            Layers.Add(layer);
         }
+        var layer = new Layer(inputNeurons, NeuronType.INPUT);
+        Layers.Add(layer);
     }
 
     private void CreateHiddenLayers()
@@ -66,9 +66,10 @@ public class NeuralNetwork
             {
                 var neuron = new Neuron(lastLayerCount, ActivationFunctions.LogisticFunction);
                 hiddenNeurons.Add(neuron);
-                var layer = new Layer(hiddenNeurons);
-                Layers.Add(layer);
+
             }
+            var layer = new Layer(hiddenNeurons);
+            Layers.Add(layer);
         }
     }
 
@@ -80,8 +81,8 @@ public class NeuralNetwork
         {
             var neuron = new Neuron(lastLayerCount, ActivationFunctions.LogisticFunction, NeuronType.OUTPUT);
             outputNeurons.Add(neuron);
-            var layer = new Layer(outputNeurons, NeuronType.OUTPUT);
-            Layers.Add(layer);
         }
+        var layer = new Layer(outputNeurons, NeuronType.OUTPUT);
+        Layers.Add(layer);
     }
 }

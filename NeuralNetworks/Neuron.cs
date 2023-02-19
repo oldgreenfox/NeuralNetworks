@@ -3,7 +3,7 @@ namespace NeuralNetworks;
 public class Neuron
 {
     public Guid id { get; private set; }
-    public List<double> Weights { get; }
+    public List<double> Weights { get; private set; }
     public NeuronType neuronType { get; }
     public double Output { get; private set; }
     private Func<double, double> activationFunc;
@@ -13,10 +13,10 @@ public class Neuron
         this.id = Guid.NewGuid();
         this.activationFunc = activationFunc;
         this.neuronType = neuronType;
-        this.Weights = new List<double>(inputCount);
+        this.Weights = new List<double>();
         for (int i = 0; i < inputCount; i++)
         {
-            this.Weights[i] = 1;
+            Weights.Add( 1);
         }
     }
 
@@ -33,14 +33,21 @@ public class Neuron
             sum += inputs[i] * this.Weights[i];
         }
 
-        this.Output = this.activationFunc(sum);
-        return Output;
+        if (this.neuronType != NeuronType.INPUT)
+        {
+            this.Output = this.activationFunc(sum);
+        }
+        else
+        {
+            this.Output = sum;
+        }
+        return this.Output;
     }
 
-    public void SetWeights(List<double> weights)
+    public void SetWeights(params double[] weights)
     {
         //TODO видалити після реалізації навчання
-        for (int i = 0; i < weights.Count; i++)
+        for (int i = 0; i < weights.Length; i++)
         {
             this.Weights[i] = weights[i];
         }
